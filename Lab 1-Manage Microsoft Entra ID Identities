@@ -1,0 +1,21 @@
+Labs/LAB_01-Manage_Entra_ID_Identities.md
+# Lab 01 - Manage Entra ID Identities
+
+## Objectives
+- Create and manage users in Microsoft Entra ID
+- Assign licenses
+- Create and manage groups
+
+## Steps Taken
+1. Logged into the Azure portal.
+2. Navigated to **Microsoft Entra ID**.
+3. Created a new user named `LabUser1`.
+4. Assigned the **User** role.
+5. Created a security group and added the user.
+
+## Issues Encountered
+- [ ] None
+- [ ] (Example) Took extra time finding the group settings.
+
+## Completion Status
+✅ Lab completed on: 2025-09-18
