@@ -1,0 +1,47 @@
+# Lab 02b - Manage Governance via Azure Policy
+  
+
+---
+
+## Objective
+In this lab, I practiced using **Azure Policy** to enforce organizational standards and assess compliance at scale.  
+The goal was to learn how to create, assign, and manage policies that ensure resources remain compliant.
+
+---
+
+## Key Tasks Performed
+1. **Create and assign a policy definition**
+   - Created a built-in policy to restrict allowed resource locations.  
+   - Assigned the policy at the subscription level.  
+
+2. **Verify policy enforcement**
+   - Attempted to deploy a resource in a non-allowed region.  
+   - Confirmed deployment was blocked by the policy.  
+
+3. **Review compliance results**
+   - Checked the **Compliance blade** in Azure Policy to view which resources were compliant vs. non-compliant.  
+
+---
+
+## Observations
+- Azure Policy works proactively (denying deployments) and reactively (flagging existing non-compliant resources).  
+- Built-in policy definitions cover common scenarios, but custom policies can be authored in JSON.  
+- Assignments can be scoped at management group, subscription, or resource group levels.  
+
+---
+
+## What I Learned
+- How to navigate to **Azure Policy** in the portal.  
+- How to assign a built-in policy to control resource deployment.  
+- The difference between **initiatives** (policy sets) and single policies.  
+- Compliance states are not instant; evaluation takes a few minutes.  
+
+---
+
+
+---
+
+## Next Steps
+- Explore **initiatives** to group multiple related policies.  
+- Practice authoring a **custom policy definition** in JSON.  
+- Compare Azure Policy vs. RBAC to understand governance vs. access control.
