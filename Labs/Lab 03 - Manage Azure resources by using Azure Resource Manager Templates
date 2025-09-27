@@ -1,0 +1,29 @@
+# Lab 03b – Manage Azure Resources Using ARM Templates
+
+## 📌 Lab Overview  
+In this lab, we’ll work with **ARM (Azure Resource Manager) templates** to deploy, update, and manage Azure resources using Infrastructure as Code (IaC).  
+You’ll learn how to author templates, deploy resources declaratively, and use parameters and variables to make templates reusable.
+
+---
+
+## 🛠️ Step-by-Step Process & What I Did
+
+### Step 1 – Open the Azure portal and navigate to the **Cloud Shell / Azure CLI**  
+- Started the **Bash / PowerShell** shell in the portal.  
+- Verified my subscription context (e.g., `az account show`) to make sure I’m deploying in the correct subscription and resource group.
+
+### Step 2 – Get the existing ARM template file  
+- Retrieved the sample template (from lab instructions).  
+- Reviewed the JSON to understand its structure:  
+  - Parameters section  
+  - Variables section  
+  - Resources section  
+  - Outputs section  
+
+### Step 3 – Deploy the template  
+- Used a command like:
+  ```bash
+  az deployment group create \
+    --resource-group MyLabRG \
+    --template-file azuredeploy.json \
+    --parameters storageAccountName=yourname storageSku=Standard_LRS
