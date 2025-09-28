@@ -1,0 +1,27 @@
+# Lab 04 – Implement Virtual Networking
+
+## Objectives
+- Create and configure virtual networks and subnets.
+- Establish VNet peering between VNets.
+- Test private connectivity across VNets using virtual machines.
+
+## Tasks Completed
+- Created resource group **az104-rg4** in East US.
+- Deployed **az104-vnet1** (10.30.0.0/20) with subnets:  
+  - subnet0 (10.30.0.0/24)  
+  - subnet1 (10.30.1.0/24)  
+  - subnet2 (10.30.2.0/24)  
+- Deployed **az104-vnet2** (10.31.0.0/20) with subnet0 (10.31.0.0/24).
+- Configured **VNet peering** between `az104-vnet1` and `az104-vnet2`.
+- Deployed one VM into each VNet and verified **ping connectivity** using private IPs.
+
+## Key Takeaways
+- VNets allow segmentation of address space into multiple subnets.
+- VNet peering enables cross-VNet communication without public IPs.
+- Connectivity was successfully verified with VM-to-VM pings.
+
+## Screenshots
+- VNet1 and subnets  
+- VNet2  
+- Peering status (Connected)  
+- Successful ping between VMs  
