@@ -1,0 +1,25 @@
+# Lab 05 – Implement Intersite Connectivity
+
+## Objectives  
+- Establish connectivity between Azure virtual networks (VNets) using VPN gateways.  
+- Configure site-to-site VPN connections.  
+- Test traffic flow between remote networks.
+
+## Tasks Completed  
+- Created resource group **az104-rg5** (or the lab’s designated RG).  
+- Deployed two VNets (e.g. `az104-vnet1`, `az104-vnet2`) with appropriate address spaces and subnets.  
+- Created **VPN gateways** in each VNet (e.g. `az104-vnet1-gw`, `az104-vnet2-gw`).  
+- Configured **local network gateways** for on-prem or remote network definitions.  
+- Set up **site-to-site VPN connections** between the gateways.  
+- Verified connectivity by sending network traffic (ping, etc.) across the VPN link.
+
+## Key Takeaways  
+- VPN gateways enable encrypted connectivity between VNets or between on-premises and Azure.  
+- Local network gateway objects represent the remote network in Azure.  
+- Site-to-site connections allow resources in different VNets to communicate as if local.
+
+## Screenshots  
+- VPN gateway creation screens  
+- Local network gateway config  
+- VPN connection status (Connected)  
+- Ping or traffic tests across the VPN  
