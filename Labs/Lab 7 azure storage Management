@@ -1,0 +1,34 @@
+# Lab 07 – Manage Azure Storage
+
+## Objectives
+- Create and configure Azure Storage accounts.  
+- Manage blob storage containers and file shares.  
+- Implement storage security, redundancy, and access controls.  
+- Use Azure Storage Explorer and shared access signatures (SAS) for secure data access.
+
+## Tasks Completed
+- Created **resource group** `az104-rg7` in **East US**.  
+- Deployed a **Storage Account** named `az104stor<uniqueID>` using the **Standard_LRS** replication option.  
+- Configured the following services within the storage account:  
+  - **Blob service:** Created a container named `data` and uploaded sample files.  
+  - **File share:** Created an Azure file share named `share1` and connected it from a Windows VM.  
+- Generated a **Shared Access Signature (SAS)** token to securely provide limited access to the blob container.  
+- Verified secure blob access via browser using the SAS URL.  
+- Enabled **soft delete** for blobs to recover deleted data.  
+- Used **Azure Storage Explorer** to manage and verify uploaded data.  
+- Configured **Azure Storage lifecycle management** rules to automatically delete older blobs based on policies.  
+- Reviewed **replication settings (LRS vs. GRS)** and tested redundancy configurations.
+
+## Key Takeaways
+- **Azure Storage Accounts** support multiple services (Blobs, Files, Queues, Tables) under one namespace.  
+- **Blob Storage** is ideal for unstructured data like images, logs, and backups.  
+- **SAS tokens** offer secure, time-limited, permission-based access without exposing account keys.  
+- **Soft delete** and **lifecycle management** protect and optimize data over time.  
+- **Storage Explorer** provides a convenient GUI for managing Azure storage resources.
+
+## Screenshots
+- Storage account overview  
+- Blob container and uploaded files  
+- File share connected to VM  
+- SAS token configuration and URL test  
+- Soft delete and lifecycle management rule view
