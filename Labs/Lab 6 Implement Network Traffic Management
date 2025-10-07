@@ -1,0 +1,36 @@
+# Lab 06 – Implement Network Traffic Management
+
+## Objectives
+- Deploy and configure an Azure Load Balancer to manage inbound traffic.  
+- Implement Network Security Groups (NSGs) and User Defined Routes (UDRs).  
+- Verify load balancing and routing functionality across multiple VMs.
+
+## Tasks Completed
+- Created **resource group** `az104-rg6` in **East US**.  
+- Deployed three virtual machines:  
+  - `az104-06-vm0` (test client)  
+  - `az104-06-vm1` (web server 1)  
+  - `az104-06-vm2` (web server 2)  
+- Installed **IIS** on both web servers using **Custom Script Extension**.  
+- Configured a **Public Load Balancer** named `az104-06-lb` with:  
+  - Frontend IP assigned via a **Public IP address**  
+  - Backend pool including `vm1` and `vm2`  
+  - Health probe monitoring **port 80 (HTTP)**  
+  - Load balancing rule distributing HTTP traffic evenly between web servers  
+- Created a **Network Security Group (NSG)** allowing inbound **HTTP (80)** and **RDP (3389)** traffic.  
+- Verified **web traffic alternated** between `vm1` and `vm2` through the Load Balancer’s public IP.  
+- Configured a **User Defined Route (UDR)** to manage custom routing between subnets.  
+- Tested routing and connectivity using `ping` and `tracert` commands from `vm0`.
+
+## Key Takeaways
+- **Azure Load Balancers** evenly distribute inbound traffic to maintain service reliability.  
+- **Health probes** ensure traffic is only sent to healthy backend instances.  
+- **Network Security Groups** control inbound and outbound traffic at the subnet or NIC level.  
+- **User Defined Routes** (UDRs) provide administrators with control over traffic flow within VNets.
+
+## Screenshots
+- Load Balancer configuration page  
+- Backend pool and health probe setup  
+- NSG inbound rules  
+- Webpage access via Load Balancer public IP  
+- Successful `tracert` and `ping` test results
