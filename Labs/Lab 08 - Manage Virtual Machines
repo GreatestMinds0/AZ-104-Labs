@@ -1,0 +1,129 @@
+# LAB 08: Manage Virtual Machines
+
+## Objective
+This lab provides hands-on experience in deploying, configuring, and managing Azure Virtual Machines (VMs) to ensure high availability, scalability, and efficient resource utilization.
+
+---
+
+## Task 1: Deploy Zone-Resilient Azure Virtual Machines
+
+**Goal:** Deploy two virtual machines across different availability zones to achieve a 99.99% uptime SLA.
+
+### Steps:
+
+1. **Sign in to the Azure Portal**
+   - Navigate to [https://portal.azure.com](https://portal.azure.com).
+
+2. **Create Virtual Machines**
+   - Search for and select **Virtual machines**.
+   - Click **+ Create** and choose **Azure virtual machine**.
+
+3. **Configure Basics**
+   - In the **Availability zone** dropdown, select **Zone 1** and **Zone 2**.
+   - Fill in required fields: **Subscription**, **Resource group**, and **Region**.
+
+4. **Configure Disks**
+   - Choose **Premium SSD** for the OS disk type.
+   - Ensure **Delete with VM** is checked.
+
+5. **Networking**
+   - Use default settings.
+   - Ensure **Delete public IP and NIC when VM is deleted** is checked.
+
+6. **Management**
+   - Set **Patch orchestration options** to **Azure orchestrated**.
+
+7. **Monitoring**
+   - Disable **Boot diagnostics**.
+
+8. **Review and Create**
+   - Review all configurations and click **Create** to deploy the VMs.
+
+---
+
+## Task 2: Configure Azure Virtual Machines Using Extensions
+
+**Goal:** Enhance VM functionality by installing and configuring extensions.
+
+### Steps:
+
+1. **Access VM Extensions**
+   - Navigate to **Virtual machines** in the portal and select the VM.
+   - Under **Settings**, click **Extensions + applications**.
+
+2. **Add Extension**
+   - Click **+ Add** and select an extension (e.g., **Custom Script Extension**).
+   - Upload and configure the script or application.
+
+3. **Monitor Installation**
+   - After installation, monitor the status to ensure success.
+
+---
+
+## Task 3: Scale Compute and Storage for Azure Virtual Machines
+
+**Goal:** Adjust VM resources to meet changing workload demands.
+
+### Steps:
+
+1. **Resize Virtual Machine**
+   - Navigate to **Virtual machines** and select the VM.
+   - Click **Size** under **Settings**.
+   - Choose a new size and click **Resize**.
+
+2. **Adjust Storage**
+   - Navigate to **Disks** under **Settings**.
+   - Select the disk to resize and click **Size + performance**.
+   - Choose the performance tier and click **Save**.
+
+---
+
+## Task 4: Register Resource Providers
+
+**Goal:** Ensure necessary resource providers are registered for VM operations.
+
+### Steps:
+
+1. **Access Subscriptions**
+   - Search for and select **Subscriptions** in the portal.
+
+2. **Resource Providers**
+   - Choose the subscription.
+   - Under **Settings**, click **Resource providers**.
+
+3. **Register Providers**
+   - Search for **Microsoft.Insights** and **Microsoft.AlertsManagement**.
+   - Click **Register** for each provider.
+
+---
+
+## Task 5: Deploy Azure Virtual Machine Scale Sets
+
+**Goal:** Automate the deployment and management of a set of identical VMs.
+
+### Steps:
+
+1. **Create Scale Set**
+   - Search for and select **Virtual machine scale sets** in the portal.
+   - Click **+ Add** to create a new scale set.
+
+2. **Configure Basics**
+   - Fill in **Subscription**, **Resource group**, and **Region**.
+   - Choose an image (e.g., **Windows Server 2019 Datacenter**).
+
+3. **Scaling**
+   - Set **Instance count** to desired number of VMs.
+   - Configure autoscaling settings as needed.
+
+4. **Networking**
+   - Choose a virtual network and subnet.
+
+---
+
+## Summary
+In this lab, you learned to:
+- Deploy zone-resilient Azure VMs.
+- Configure VM extensions.
+- Scale compute and storage resources.
+- Register necessary resource providers.
+- Deploy VM scale sets for automated scaling.
