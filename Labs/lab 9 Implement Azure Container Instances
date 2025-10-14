@@ -1,0 +1,74 @@
+# LAB 09b: Implement Azure Container Instances
+
+## Objective  
+In this lab, you will deploy and manage container workloads using **Azure Container Instances (ACI)**. You’ll learn how to run a container in Azure without managing servers or orchestrators.
+
+---
+
+## Task 1: Create a Resource Group for the Lab
+
+**Steps:**
+
+1. Sign in to the Azure portal (https://portal.azure.com).  
+2. In the portal, search and select **Resource groups**.  
+3. Click **+ Create**.  
+4. Select your subscription.  
+5. Enter a **Resource group name**, e.g. `aci-rg1`.  
+6. Choose a **Region** (e.g. East US).  
+7. Click **Review + create**, then **Create**.
+
+---
+
+## Task 2: Deploy a Container Instance using the Azure Portal
+
+**Steps:**
+
+1. In the portal, search and select **Container instances**.  
+2. Click **+ Create** → **Container instance**.  
+3. Basics tab:  
+   - Subscription: your subscription  
+   - Resource group: use the one you created (e.g. `aci-rg1`)  
+   - Container name: e.g. `mycontainer1`  
+   - Region: same region as resource group  
+   - Image source: Docker Hub or public registry  
+   - Image type: specify (e.g. `nginx:latest`)  
+   - OS type: Linux (or Windows as needed)  
+   - CPU / memory: choose count (e.g. 1 vCPU, 1.5 GB memory)  
+4. Networking tab:  
+   - For example, you can enable **Public IP address**  
+   - Select **DNS name label** (e.g. `mywebapp-aci`)  
+5. Advanced tabs: configure environment variables, volumes, etc.  
+6. Review + create → Create.
+
+---
+
+## Task 3: Verify Container Instance Deployment
+
+**Steps:**
+
+1. After deployment, go to **Container instances** → select your container.  
+2. Check the **Status** (Running, Succeeded, etc.).  
+3. Note the **FQDN / IP / DNS name** if public access was enabled.  
+4. Use a browser or `curl` to verify access (for e.g. HTTP response).  
+
+---
+
+## Task 4: Deploy a Container Instance using Azure CLI
+
+**Steps:**
+
+1. Open **Cloud Shell** (Azure portal) or your local machine (with Azure CLI configured).  
+2. Use the following sample command (adjust parameters):
+
+   ```bash
+   az container create \
+     --resource-group aci-rg1 \
+     --name mycontainer2 \
+     --image nginx:latest \
+     --cpu 1 \
+     --memory 1.5 \
+     --registry-login-server <registry> \
+     --registry-username <user> \
+     --registry-password <password> \
+     --ip-address Public \
+     --dns-name-label mywebapp-aci2
