@@ -1,0 +1,116 @@
+# LAB 10: Implement Data Protection
+
+## Lab introduction  
+In this lab, you learn about backing up and recovering Azure VMs. You will:  
+- Create a Recovery Services vault and backup policy  
+- Configure VM-level backup  
+- Monitor Azure Backup  
+- Enable VM replication (disaster recovery with Azure Site Recovery)  
+:contentReference[oaicite:0]{index=0}  
+
+---
+
+## Scenario  
+Your organization wants to safeguard VM data from accidental or malicious data loss, and enable disaster recovery options. You will use Azure Backup and Azure Site Recovery to achieve that.  
+:contentReference[oaicite:1]{index=1}  
+
+---
+
+## Task 1: Use a template to provision infrastructure  
+
+1. Download the lab files (template + parameters).  
+2. Sign in to the Azure portal.  
+3. Search “Deploy a custom template” → select “Build your own template in the editor.”  
+4. Load the template JSON file (e.g. `az104-10-vms-edge-template.json`).  
+5. Load the parameter file (e.g. `az104-10-vms-edge-parameters.json`).  
+6. Fill in deployment settings:
+   - Subscription  
+   - Resource group (e.g. `az104-rg-region1`)  
+   - Region (e.g. East US)  
+   - VM admin username / password  
+7. Review + create → deploy the stack (VM + VNet)  
+8. Wait deployment to complete → Go to resource  
+:contentReference[oaicite:2]{index=2}  
+
+---
+
+## Task 2: Create and configure a Recovery Services vault  
+
+1. In portal, search **Recovery Services vaults** → **+ Create**  
+2. Fill in fields:
+   - Subscription  
+   - Resource group (should match the VM’s RG)  
+   - Vault name (e.g. `az104-rsv-region1`)  
+   - Region (match VM region)  
+3. Review + Create → Create the vault  
+4. After creation, go to the vault → in **Properties**, click **Backup Configuration**  
+   - Leave **Storage replication** as default (e.g. Geo-redundant)  
+5. In **Security settings**, note **Soft Delete** is enabled (14 days)  
+:contentReference[oaicite:3]{index=3}  
+
+---
+
+## Task 3: Configure VM-level backup  
+
+1. In the Recovery Services vault, click **+ Backup**  
+2. On **Backup Goal**:
+   - Workload running in: **Azure**  
+   - What to backup: **Virtual machine**  
+   - Click **Backup**  
+3. Select **Standard** policy (or review Enhanced)  
+4. Create a new policy:
+   - Policy name: e.g. `az104-backup`  
+   - Frequency: Daily  
+   - Time: 12:00 AM  
+   - Time zone: your local zone  
+   - Retain instant recovery snapshots for 2 days  
+5. In **Virtual Machines** section, click **Add** → select your VM (e.g. `az104-10-vm0`) → OK  
+6. Enable backup  
+7. In vault → **Backup items** → click the VM entry → **View details**  
+   - Check Backup Pre-Check, Last Backup Status  
+8. Optionally, click **Backup now** (accept defaults)  
+:contentReference[oaicite:4]{index=4}  
+
+---
+
+## Task 4: Monitor Azure Backup  
+
+1. Create a **Storage account** (in same or lab RG)  
+   - Subscription, RG, unique name, region  
+2. In the Recovery Services vault → **Monitoring** → **Diagnostic settings** → **Add diagnostic setting**  
+3. Name it (e.g. `Logs and Metrics to storage`)  
+4. Select categories to log:
+   - Azure Backup Reporting Data  
+   - Addon Azure Backup Job Data  
+   - Addon Azure Backup Alert Data  
+   - Azure Site Recovery Jobs  
+   - Azure Site Recovery Events  
+5. Destination: Archive to storage → select your storage account  
+6. Save settings  
+7. Back in vault → **Backup jobs** → find the job for `az104-10-vm0` → view details  
+:contentReference[oaicite:5]{index=5}  
+
+---
+
+## Task 5: Enable VM replication (Disaster Recovery)  
+
+1. Create a second Recovery Services vault in a different region (e.g. West US)  
+   - RG: e.g. `az104-rg-region2`  
+   - Vault name: `az104-rsv-region2`  
+2. Find your VM (e.g. `az104-10-vm0`) → **Backup + Disaster recovery** → **Disaster recovery**  
+3. On **Basics**, pick target region  
+4. Move to **Advanced settings** (resource selections, etc.)  
+   - Create an Automation account if needed  
+5. Review + Start replication → Enable replication  
+6. Wait for replication to take effect (10-15 min)  
+7. In target vault, under **Protected items** → **Replicated items**, check VM health & sync status  
+:contentReference[oaicite:6]{index=6}  
+
+---
+
+## Cleanup  
+
+To remove resources:
+
+```bash
+az group delete --name <lab-resource-group> --yes
